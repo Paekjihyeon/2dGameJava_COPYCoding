@@ -35,10 +35,16 @@ public class GamePanel extends JPanel implements Runnable{
 	
 	KeyHandler keyH = new KeyHandler();
 	
-	Player player = new Player(this, keyH);
+	public Player player = new Player(this, keyH);
 	
 	TileManager tileM = new TileManager(this);
 	
+	
+	// 월드 세팅	 
+		//1.월드 크기
+	public final int maxWorldCol = 50;
+	public final int maxWorldRow = 50;
+	public final int worldWidth = tileSize * maxWorldCol;
 	
 	public GamePanel() {
 		

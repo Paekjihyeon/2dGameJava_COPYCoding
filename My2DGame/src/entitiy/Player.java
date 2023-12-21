@@ -14,10 +14,18 @@ public class Player extends Entity {
 	GamePanel gp;
 	KeyHandler keyH;
 	
+//	카메라 관련. 플레이어가 화면의 어느 위치에 있는가.
+	public final int screenX;
+	public final int screenY;
+	
 		public Player(GamePanel gp, KeyHandler keyH) {
 			
 			this.gp = gp;
 			this.keyH = keyH;
+			
+			// "점"의 관점에선 중심이지만 "타일"의 관점에선 중앙이 아니어서 타일사이즈/2만큼 빼줌
+			screenX = gp.screenWidth/2 - (gp.tileSize/2); 
+			screenY = gp.screenHeight/2 - (gp.tileSize/2);
 			
 			setDefaultValues();
 			getPlayerImage();
@@ -41,8 +49,9 @@ public class Player extends Entity {
 		
 		public void setDefaultValues() {
 			
-			x = 100;
-			y = 100;
+			//플레이어의 기본 위치
+			worldX = gp.tileSize * 23; // 게임 타일 크기 * 월드맵 x축 위치
+			worldY = gp.tileSize * 21; 
 			speed = 4;
 			//기본 방향
 			direction = "down";
@@ -57,16 +66,16 @@ public class Player extends Entity {
 				
 				if(keyH.upPressed == true) {
 					direction = "up";
-					y -= speed;
+					worldY -= speed;
 				}else if(keyH.downPressed == true) {
 					direction = "down";
-					y += speed;
+					worldY += speed;
 				}else if(keyH.leftPressed ==true) {
 					direction = "left";
-					x -= speed;
+					worldX -= speed;
 				}else if(keyH.rightPressed==true) {
 					direction = "right";
-					x += speed;
+					worldX += speed;
 				}
 				
 				//화면 업데이트 10번당 동적으로 이미지 변경
@@ -125,7 +134,7 @@ public class Player extends Entity {
 				break;
 			}
 			
-			g2.drawImage(image, x, y, gp.tileSize, gp.tileSize,null);
+			g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize,null);
 			
 		}
 }

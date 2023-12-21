@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 //플레이어, NPC의 가장 부모 클래스
 public class Entity {
 	
-	public int x, y;
+	public int worldX, worldY; //전체 월드맵에 대한 위치 (스크린에 대한 위치 아님)
 	public int speed;
 	
 	
