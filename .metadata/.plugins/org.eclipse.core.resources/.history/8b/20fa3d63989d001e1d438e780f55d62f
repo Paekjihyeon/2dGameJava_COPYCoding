@@ -1,0 +1,11 @@
+package main;
+
+import javax.swing.JFrame;
+
+public class Main {
+	public Main() {
+		
+		JFrame Window = new JFrame();
+	}
+
+}

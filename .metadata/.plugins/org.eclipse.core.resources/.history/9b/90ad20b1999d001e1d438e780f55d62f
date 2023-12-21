@@ -1,0 +1,10 @@
+package main;
+
+import javax.swing.JPanel;
+
+//게임 스크린으로 동작함.
+public class GamePanel extends JPanel{
+	
+	//Screen Settings
+	final int originalTitleSize = 16; // 16x16  => 아이템, 몬스터, 캐릭터등의 기본 사이즈. 
+}

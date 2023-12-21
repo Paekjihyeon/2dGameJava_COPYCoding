@@ -1,0 +1,28 @@
+package main;
+
+import java.util.List;
+
+import javax.swing.JFrame;
+
+public class Main {
+			
+	public static void main(String[] args) {
+		JFrame window = new JFrame();
+		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		window.setResizable(true);
+		window.setTitle("2D ADVENTURE");
+		
+		GamePanel gamePanel = new GamePanel();
+		window.add(gamePanel); //게임 실행  
+		
+		Thread gameThread;
+		
+		//윈도우가 설정 사이즈에 맞게 조절되도록 도와줌
+		window.pack();
+		
+		window.setLocationRelativeTo(null);
+		window.setVisible(true);
+	}
+
+
+}

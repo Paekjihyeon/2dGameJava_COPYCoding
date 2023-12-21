@@ -1,0 +1,8 @@
+package main;
+
+import javax.swing.JPanel;
+
+//게임 스크린으로 
+public class GamePanel extends JPanelp{
+
+}

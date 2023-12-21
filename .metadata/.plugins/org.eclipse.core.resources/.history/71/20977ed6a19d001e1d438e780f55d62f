@@ -1,0 +1,82 @@
+package main;
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+
+import javax.swing.JPanel;
+
+//게임 스크린으로 동작함.
+public class GamePanel extends JPanel implements Runnable{
+	
+	//Screen Settings
+	// 16x16  => 아이템, 몬스터, 캐릭터등의 기본 사이즈. 
+	final int originalTitleSize = 16; 
+	// 16 *3 => 스크린에서 상대적인 크기를 조정하는 상수 (기본사이즈 배수) 
+	final int scale = 3;  
+	
+	final int tileSize = originalTitleSize * scale;
+	
+	//게임사이즈를 정할 떄는 가로세로를 둘다 생각해야함.
+	final int maxScreenCol = 16;
+	final int maxScreenRow = 12; 
+	final int screenWidth = tileSize * maxScreenCol; //768 pixel
+	final int screenHeight = tileSize * maxScreenRow; //576 pixel
+	
+	//게임을 종료하기 전에 지속할 수 있게함
+	Thread gameThread;
+	
+	KeyHandler keyH = new KeyHandler();
+	
+	public GamePanel() {
+		
+		this.setPreferredSize(new Dimension(screenWidth, screenHeight));
+		this.setBackground(Color.black);
+		//게임 랜더링 성능을 향상
+		this.setDoubleBuffered(true); 
+		this.addKeyListener(keyH); //키보드 움직임을 인지 
+		this.setFocusable(true); //입력된 값에 포커스 할 수 있도록함.
+	}
+	
+	public void startGameThread() {
+		
+		gameThread = new Thread(this);
+		gameThread.start();
+	};
+	
+	//게임 루프를 실행
+	@Override
+	public void run() {
+		
+		//게임 실행하는 동안 계속 진행 
+		while(gameThread!=null){
+			
+			//update는 실시간으로 fps에 따라 됨. (60fps -> 1초에 60번 업데이트)
+			//1 UPDATE : update information such as character positions -키보드 등으로 이동되는 위치 적용.
+			update();
+			
+			//update된 결과에 따라 게임 스크린을 다시 그림 
+			// 2 DRAW : draw the screen with the update information ->  
+			repaint();
+		}
+	}
+	
+	public void update() {}
+	
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);  
+		
+		Graphics2D g2 = (Graphics2D) g;
+		
+		g2.setColor(Color.white);
+		g2.fillRect(100, 100, tileSize, tileSize);
+		
+		g2.dispose(); //그래픽들이 쌓이는 것을 방지
+				
+				
+	}
+		
+		
+	}
+	

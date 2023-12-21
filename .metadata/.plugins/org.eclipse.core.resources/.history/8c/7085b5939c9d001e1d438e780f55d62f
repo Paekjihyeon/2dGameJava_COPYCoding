@@ -1,0 +1,32 @@
+package main;
+
+import java.awt.Color;
+import java.awt.Dimension;
+
+import javax.swing.JPanel;
+
+//게임 스크린으로 동작함.
+public class GamePanel extends JPanel{
+	
+	//Screen Settings
+	// 16x16  => 아이템, 몬스터, 캐릭터등의 기본 사이즈. 
+	final int originalTitleSize = 16; 
+	// 16 *3 => 스크린에서 상대적인 크기를 조정하는 상수 
+	final int scale = 3;  
+	
+	final int tileSize = originalTitleSize * scale;
+	
+	//게임사이즈를 정할 떄는 가로세로를 둘다 생각해야함.
+	final int maxScreenCol = 16;
+	final int maxScreenRow = 12; 
+	final int screenWidth = tileSize * maxScreenCol; //768 pixel
+	final int screenHeight = tileSize * maxScreenRow; //576 pixel
+	
+	
+	public GamePanel() {
+		
+		this.setPreferredSize(new Dimension(screenWidth, screenHeight));
+		this.setBackground(Color.black);
+		this.setDoubleBuffered(true); //게임 랜더링 성능을 향상
+	}
+}
