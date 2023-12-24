@@ -1,5 +1,6 @@
 package entitiy;
 
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 //플레이어, NPC의 가장 부모 클래스
@@ -14,4 +15,8 @@ public class Entity {
 	
 	public int spriteCounter =0 ;
 	public int spriteNum = 1;
+	
+	//캐릭터의 tile collision을 자정할 영역 (x, y, width, height)
+	public Rectangle soildArea;
+	public boolean collisionOn = false;
 }

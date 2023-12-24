@@ -39,6 +39,7 @@ public class GamePanel extends JPanel implements Runnable{
 	
 	TileManager tileM = new TileManager(this);
 	
+	public CollisionChecker cChecker = new CollisionChecker(this);
 	
 	// 월드 세팅	 
 		//1.월드 크기

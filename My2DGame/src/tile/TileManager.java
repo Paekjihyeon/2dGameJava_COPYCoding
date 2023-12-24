@@ -12,13 +12,13 @@ import main.GamePanel;
 
 public class TileManager {
 	GamePanel gp;
-	Tile[] tile;
-	int mapTileNum[][];
+	public Tile[] tile;
+	public int mapTileNum[][];
 	
 	public TileManager(GamePanel gp) {
 		this.gp = gp;
 		tile = new Tile[10]; //일단 10개로 크기 조정 
-		mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow];
+		 mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow];
 		
 		getTileImage();
 		loadMap("/map/world01.txt");
@@ -33,13 +33,19 @@ public class TileManager {
 			 tile[0].image = ImageIO.read(getClass().getResourceAsStream("/tiles/grass.png"));
 			 tile[1] = new Tile();
 			 tile[1].image = ImageIO.read(getClass().getResourceAsStream("/tiles/wall.png"));
+			 tile[1].collision= true; //진입불가
+			 
 			 tile[2] = new Tile();
 			 tile[2].image = ImageIO.read(getClass().getResourceAsStream("/tiles/water.png"));
+			 tile[2].collision= true;
 			 
 			 tile[3] = new Tile();
 			 tile[3].image = ImageIO.read(getClass().getResourceAsStream("/tiles/earth.png"));
+			 
 			 tile[4] = new Tile();
 			 tile[4].image = ImageIO.read(getClass().getResourceAsStream("/tiles/tree.png"));
+			 tile[4].collision= true;
+			 
 			 tile[5] = new Tile();
 			 tile[5].image = ImageIO.read(getClass().getResourceAsStream("/tiles/sand.png"));
 			 
