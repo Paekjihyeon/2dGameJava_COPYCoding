@@ -17,6 +17,9 @@ public class Entity {
 	public int spriteNum = 1;
 	
 	//캐릭터의 tile collision을 자정할 영역 (x, y, width, height)
-	public Rectangle soildArea;
+	public Rectangle solidArea;
 	public boolean collisionOn = false;
+	
+	//오브젝트 collision 관련
+	public int solidAreaDefaultX, solidAreaDefaultY;
 }

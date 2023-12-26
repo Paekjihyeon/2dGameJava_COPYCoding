@@ -19,6 +19,9 @@ public class Player extends Entity {
 	public final int screenX;
 	public final int screenY;
 	
+	/*플레이어가 몇개의 키를 가지고 있는가*/
+	int hasKey = 0;
+	
 		public Player(GamePanel gp, KeyHandler keyH) {
 			
 			this.gp = gp;
@@ -28,12 +31,15 @@ public class Player extends Entity {
 			screenX = gp.screenWidth/2 - (gp.tileSize/2); 
 			screenY = gp.screenHeight/2 - (gp.tileSize/2);
 			
-			//플레이어 크기에 대비하여 설정해주면됨.
-			soildArea = new Rectangle();
-			soildArea.x = 8;
-			soildArea.y =16;
-			soildArea.width = 32;
-			soildArea.height = 32;
+			//플레이어 크기에 대비하여 충돌크기를 설정해주면됨.
+			solidArea = new Rectangle();
+			solidArea.x = 8;
+			solidArea.y =16;
+			solidArea.width = 32;
+			solidArea.height = 32;
+			
+			solidAreaDefaultX = solidArea.x;
+			solidAreaDefaultY = solidArea.y;
 			
 			setDefaultValues();
 			getPlayerImage();
@@ -82,9 +88,13 @@ public class Player extends Entity {
 				}
 				
 				
-				// tile collision 설정 , 방향에 따라 collistion 식이 달라지므로 방향을 지정하고 해야함
+				// tile collision 설정 , 방향에 따라 collision 식이 달라지므로 방향을 지정하고 해야함
 				collisionOn = false;
-				gp.cChecker.checkTile(this);
+				gp.cChecker.checkTile(this);  //collisonON값 달라짐
+				
+				//check object collision
+				int objIndex = gp.cChecker.checkObject(this, true); //collisonON값 달라질 수 있음
+				pickUpObject(objIndex);
 				
 				//충돌대상 타일이 아닐때만 움직일 수 있도록 
 				if(collisionOn == false) {
@@ -110,6 +120,27 @@ public class Player extends Entity {
 				//화면 업데이트 10번당 동적으로 이미지 변경
 
 			}
+		
+		/*플레이어와 오브젝트의 상호작용 */
+		public void pickUpObject(int i) {
+			/* checkObject()에서 설정한 index*/
+			if(i != 999) {
+				String objectName = gp.obj[i].name;
+				switch(objectName) {
+				case "Key" :
+					hasKey++;
+					gp.obj[i] = null;
+					break;
+				case "Door" :
+					if(hasKey > 0) {
+						hasKey--;
+						gp.obj[i] = null;
+					}break;
+					
+				}
+				
+			}
+		}
 		
 		public void draw(Graphics2D g2){
 			

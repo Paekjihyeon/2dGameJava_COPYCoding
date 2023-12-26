@@ -8,6 +8,7 @@ import java.awt.Graphics2D;
 import javax.swing.JPanel;
 
 import entitiy.Player;
+import object.SuperObject;
 import tile.TileManager;
 
 //게임 스크린으로 동작함.
@@ -41,6 +42,10 @@ public class GamePanel extends JPanel implements Runnable{
 	
 	public CollisionChecker cChecker = new CollisionChecker(this);
 	
+	public SuperObject obj[] = new SuperObject[10]; 
+	public AssetSetter aSetter = new AssetSetter(this);
+	
+	
 	// 월드 세팅	 
 		//1.월드 크기
 	public final int maxWorldCol = 50;
@@ -55,6 +60,11 @@ public class GamePanel extends JPanel implements Runnable{
 		this.setDoubleBuffered(true); 
 		this.addKeyListener(keyH); //키보드 움직임을 인지 
 		this.setFocusable(true); //입력된 값에 포커스 할 수 있도록 함.
+	}
+	
+	//게임 사전준비 메소드
+	public void setupGame() {
+		aSetter.setObject(); // 오브젝트 설정 
 	}
 	
 	public void startGameThread() {
@@ -153,7 +163,15 @@ public class GamePanel extends JPanel implements Runnable{
 		//이때 요소를 그리는 순서 중요 
 		// ex. 플레이어를 먼저 그린다면 타일이 플레이어 위로 가있음.
 		tileM.draw(g2);
+		
+		for(int i=0;i<obj.length;i++) {
+			if(obj[i]!=null) {
+				obj[i].draw(g2, this);
+			}
+		}
+		
 		player.draw(g2);
+		
 		
 		
 		g2.dispose(); //그래픽들이 쌓이는 것을 방지
