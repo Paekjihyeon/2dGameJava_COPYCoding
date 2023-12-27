@@ -128,15 +128,22 @@ public class Player extends Entity {
 				String objectName = gp.obj[i].name;
 				switch(objectName) {
 				case "Key" :
+					gp.playSE(1);
 					hasKey++;
 					gp.obj[i] = null;
 					break;
 				case "Door" :
 					if(hasKey > 0) {
+						gp.playSE(3);
 						hasKey--;
 						gp.obj[i] = null;
 					}break;
 					
+					/* 부츠를 획득할 경우 스피드가 빨라짐 */
+				case "Boots":
+					gp.playSE(2);
+					speed += 1  ;
+					gp.obj[i] = null;
 				}
 				
 			}
