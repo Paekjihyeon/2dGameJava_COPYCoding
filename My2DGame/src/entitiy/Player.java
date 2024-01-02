@@ -9,6 +9,7 @@ import javax.imageio.ImageIO;
 
 import main.GamePanel;
 import main.KeyHandler;
+import main.UtilityTool;
 
 public class Player extends Entity {
 	
@@ -20,7 +21,7 @@ public class Player extends Entity {
 	public final int screenY;
 	
 	/*플레이어가 몇개의 키를 가지고 있는가*/
-	int hasKey = 0;
+	public int hasKey = 0;
 	
 		public Player(GamePanel gp, KeyHandler keyH) {
 			
@@ -46,7 +47,7 @@ public class Player extends Entity {
 		}
 		
 		public void getPlayerImage() {
-			try {
+				/*
 				up1 = ImageIO.read(getClass().getResourceAsStream("/player/player_back_1.png"));
 				up2 = ImageIO.read(getClass().getResourceAsStream("/player/player_back_2.png"));
 				down1 = ImageIO.read(getClass().getResourceAsStream("/player/player_front_1.png"));
@@ -55,10 +56,33 @@ public class Player extends Entity {
 				left2 = ImageIO.read(getClass().getResourceAsStream("/player/player_left_walk.png"));
 				right1 = ImageIO.read(getClass().getResourceAsStream("/player/player_right_stand.png"));
 				right2 = ImageIO.read(getClass().getResourceAsStream("/player/player_right_walk.png"));
+				*/
+			
+			up1 = setup("player_back_1");
+			up2 = setup("player_back_2");
+			down1 = setup("player_front_1");
+			down2 = setup("player_front_2");
+			left1 = setup("player_left_stand");
+			left2 = setup("player_left_walk");
+			right1 = setup("player_right_stand");
+			right2 = setup("player_right_walk");
+			
 				
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+		}
+		
+		/*플레이어의 이미지를 그려주는 작업*/
+		public BufferedImage setup(String imageName) {
+			
+			UtilityTool uTool = new UtilityTool();
+			BufferedImage image = null;
+			
+		try {
+			image = ImageIO.read(getClass().getResourceAsStream("/player/"+ imageName +".png"));
+			image = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+			return image;
 		}
 		
 		public void setDefaultValues() {
@@ -131,26 +155,37 @@ public class Player extends Entity {
 					gp.playSE(1);
 					hasKey++;
 					gp.obj[i] = null;
+					gp.ui.showMessage("you got a key!");
 					break;
 				case "Door" :
 					if(hasKey > 0) {
 						gp.playSE(3);
 						hasKey--;
 						gp.obj[i] = null;
-					}break;
+						gp.ui.showMessage("you opened the door!");
+					}else {
+						gp.ui.showMessage("you neeed a key!");
+					}
 					
+					break;
 					/* 부츠를 획득할 경우 스피드가 빨라짐 */
 				case "Boots":
 					gp.playSE(2);
 					speed += 1  ;
 					gp.obj[i] = null;
+					gp.ui.showMessage("Speed up!");
+					break;
+				case "Chest" : 
+					gp.ui.gameFinished = true;
+					gp.stopMusic();
+					gp.playSE(4);
+					break;
 				}
 				
 			}
 		}
 		
 		public void draw(Graphics2D g2){
-			
 //			g2.setColor(Color.white);
 //			g2.fillRect(x, y, gp.tileSize, gp.tileSize);
 			
@@ -191,7 +226,7 @@ public class Player extends Entity {
 				break;
 			}
 			
-			g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize,null);
+			g2.drawImage(image, screenX, screenY ,null);
 			
 		}
 }

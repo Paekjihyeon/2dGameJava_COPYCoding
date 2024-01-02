@@ -43,8 +43,11 @@ public class GamePanel extends JPanel implements Runnable{
 	KeyHandler keyH = new KeyHandler();
 	public CollisionChecker cChecker = new CollisionChecker(this);
 	public AssetSetter aSetter = new AssetSetter(this);
-	Sound sound = new Sound();
+	Sound music = new Sound(); // 배경음 
+	Sound se = new Sound(); //효과음
+	public UI ui = new UI(this); 
 	Thread gameThread;
+	
 	
 	
 	/*ENTITY AND OBJECT*/
@@ -162,6 +165,13 @@ public class GamePanel extends JPanel implements Runnable{
 		Graphics2D g2 = (Graphics2D) g;
 		
 		
+		//DEBUG 
+		long drawStart = 0;
+		if(keyH.checkDrawTime==true) {
+			drawStart = System.nanoTime();
+		}
+		
+		
 		//이때 요소를 그리는 순서 중요 
 		// ex. 플레이어를 먼저 그린다면 타일이 플레이어 위로 가있음.
 		tileM.draw(g2);
@@ -174,7 +184,20 @@ public class GamePanel extends JPanel implements Runnable{
 		
 		player.draw(g2);
 		
+		// UI가 가장 상단에 위치하도록 가장 마지막에 draw
+		ui.draw(g2);
 		
+		
+		//DEBUG
+		
+		if(keyH.checkDrawTime==true) {
+			long drawEnd = System.nanoTime();
+			long passed = drawEnd - drawStart;
+			g2.setColor(Color.white);
+			g2.drawString("Draw time : " + passed, 10, 400); //게임을 그리는데 걸리는 시간 (게임 성능  측정)
+			
+			System.out.println("Draw time : " + passed);
+		}
 		
 		g2.dispose(); //그래픽들이 쌓이는 것을 방지
 				
@@ -182,18 +205,18 @@ public class GamePanel extends JPanel implements Runnable{
 	
 	public void playMusic(int i) {
 		
-		sound.setFile(i);
-		sound.play();
-		sound.loop();
+		music.setFile(i);
+		music.play();
+		music.loop();
 	}
 		
 	public void stopMusic() {
-		sound.stop();
+		music.stop();
 	}
 	
 	public void playSE(int i) {
-		sound.setFile(i);
-		sound.play();
+		se.setFile(i);
+		se.play();
 	}
 		
 	}
