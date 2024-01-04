@@ -1,6 +1,0 @@
-package entitiy;
-
-//플레이어, NPC의 가장 부모 클래스
-public class Entity {
-
-}

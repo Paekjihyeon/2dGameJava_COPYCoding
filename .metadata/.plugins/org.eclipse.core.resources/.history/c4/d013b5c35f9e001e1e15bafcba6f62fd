@@ -1,5 +1,0 @@
-package entitiy;
-
-public class Player extends Entity {
-
-}

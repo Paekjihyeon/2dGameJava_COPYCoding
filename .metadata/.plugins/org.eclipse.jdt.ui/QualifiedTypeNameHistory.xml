@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="java.awt.image.BufferedImage"/>
-    <fullyQualifiedTypeName name="main.GamePanel"/>
-    <fullyQualifiedTypeName name="java.io.IOException"/>
-    <fullyQualifiedTypeName name="javax.imageio.ImageIO"/>
-    <fullyQualifiedTypeName name="java.awt.Graphics2D"/>
     <fullyQualifiedTypeName name="tile.TileManager"/>
     <fullyQualifiedTypeName name="java.io.InputStream"/>
     <fullyQualifiedTypeName name="java.io.BufferedReader"/>
     <fullyQualifiedTypeName name="java.io.InputStreamReader"/>
+    <fullyQualifiedTypeName name="entitiy.Entity"/>
+    <fullyQualifiedTypeName name="main.CollisionChecker"/>
+    <fullyQualifiedTypeName name="java.io.IOException"/>
+    <fullyQualifiedTypeName name="javax.imageio.ImageIO"/>
+    <fullyQualifiedTypeName name="main.AssetSetter"/>
+    <fullyQualifiedTypeName name="object.OBJ_Key"/>
+    <fullyQualifiedTypeName name="object.SuperObject"/>
+    <fullyQualifiedTypeName name="java.awt.Rectangle"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="java.awt.Graphics2D"/>
+    <fullyQualifiedTypeName name="javax.swing.text.Utilities"/>
+    <fullyQualifiedTypeName name="java.awt.image.BufferedImage"/>
+    <fullyQualifiedTypeName name="main.UtilityTool"/>
+    <fullyQualifiedTypeName name="main.GamePanel"/>
 </qualifiedTypeNameHistroy>

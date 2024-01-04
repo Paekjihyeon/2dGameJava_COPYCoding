@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+	<item key="filters_last_used" value="filter_imports;"/>
 	<section name="completion_proposal_size">
 	</section>
 	<section name="quick_assist_proposal_size">
@@ -18,6 +19,8 @@
 		<item key="updateTextualMatches" value="false"/>
 		<item key="updateQualifiedNames" value="false"/>
 		<item key="patterns" value="*"/>
+		<item key="updateSimilarElements" value="false"/>
+		<item key="updateSimilarElementsMatchStrategy" value="1"/>
 	</section>
 	<section name="OptionalMessageDialog.hide.">
 		<item key="org.eclipse.jdt.ui.typecomment.deprecated" value="true"/>
@@ -25,5 +28,37 @@
 	<section name="NewClassWizardPage">
 		<item key="create_constructor" value="false"/>
 		<item key="create_unimplemented" value="true"/>
+	</section>
+	<section name="JavaSearchPage">
+		<item key="CASE_SENSITIVE" value="false"/>
+		<item key="INCLUDE_MASK" value="11"/>
+		<item key="HISTORY_SIZE" value="1"/>
+		<section name="HISTORY0">
+			<item key="searchFor" value="1"/>
+			<item key="scope" value="0"/>
+			<item key="pattern" value="pickUpObject"/>
+			<item key="limitTo" value="2"/>
+			<item key="matchLocations" value="0"/>
+			<item key="javaElement" value=""/>
+			<item key="isCaseSensitive" value="false"/>
+			<item key="includeMask" value="11"/>
+			<list key="workingSets">
+			</list>
+		</section>
+	</section>
+	<section name="FatJarPackageWizard">
+		<item key="FatJarPackageWizardPage.ANTSCRIPT_SAVE" value="false"/>
+		<item key="FatJarPackageWizardPage.ANTSCRIPT_LOCATION" value="C:\paekjihyeon\toyProject\java2DGame"/>
+		<item key="FatJarPackageWizardPage.LIBRARY_HANDLING" value="1"/>
+		<item key="FatJarPackageWizardPage.LAUNCH_CONFIGURATION_SELECTION_NAME" value="Main - My2DGame"/>
+		<item key="FatJarPackageWizardPage.DESTINATION_PATH_SELECTION" value="C:\Users\skysu\OneDrive\바탕 화면\tuto2.jar"/>
+		<list key="FatJarPackageWizardPage.DESTINATION_NAMES_ID">
+			<item value="C:\Users\skysu\OneDrive\바탕 화면\tuto2.jar"/>
+			<item value="C:\Users\skysu\OneDrive\바탕 화면\tuto.jar"/>
+		</list>
+		<list key="FatJarPackageWizardPage.ANTSCRIPT_LOCATION_HISTORY">
+			<item value="C:\paekjihyeon\toyProject\java2DGame.xml"/>
+			<item value=".xml"/>
+		</list>
 	</section>
 </section>
