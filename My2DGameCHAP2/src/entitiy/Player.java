@@ -45,13 +45,6 @@ public class Player extends Entity {
 		public void getPlayerImage() {
 				/*
 				up1 = ImageIO.read(getClass().getResourceAsStream("/player/player_back_1.png"));
-				up2 = ImageIO.read(getClass().getResourceAsStream("/player/player_back_2.png"));
-				down1 = ImageIO.read(getClass().getResourceAsStream("/player/player_front_1.png"));
-				down2 = ImageIO.read(getClass().getResourceAsStream("/player/player_front_2.png"));
-				left1 = ImageIO.read(getClass().getResourceAsStream("/player/player_left_stand.png"));
-				left2 = ImageIO.read(getClass().getResourceAsStream("/player/player_left_walk.png"));
-				right1 = ImageIO.read(getClass().getResourceAsStream("/player/player_right_stand.png"));
-				right2 = ImageIO.read(getClass().getResourceAsStream("/player/player_right_walk.png"));
 				*/
 			
 			up1 = setup("/player/player_back_1");
@@ -65,22 +58,7 @@ public class Player extends Entity {
 			
 				
 		}
-		
-		/*플레이어의 이미지를 그려주는 작업 - ENTITY클래스로 이동 모든 object들이 다 사용하게 될거같아서.*/
-//		public BufferedImage setup(String imageName) {
-//			
-//			UtilityTool uTool = new UtilityTool();
-//			BufferedImage image = null;
-//			
-//		try {
-//			image = ImageIO.read(getClass().getResourceAsStream("/player/"+ imageName +".png"));
-//			image = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//			return image;
-//		}
-//		
+			
 		public void setDefaultValues() {
 			
 			//플레이어의 기본 위치
@@ -112,13 +90,9 @@ public class Player extends Entity {
 				collisionOn = false;
 				gp.cChecker.checkTile(this);  //collisonON값 달라짐
 				
-				/*check object collision
-				int objIndex = gp.cChecker.checkObject(this, true); //collisonON값 달라질 수 있음
-				pickUpObject(objIndex); */
 				
 				/*check npc collision*/
 				int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
-				System.out.println(npcIndex);
 				interactNPC(npcIndex);
 				
 				
@@ -147,20 +121,18 @@ public class Player extends Entity {
 
 			}
 		
-		/*플레이어와 오브젝트의 상호작용 
-		public void pickUpObject(int i) {
-			//checkObject()에서 설정한 index
-			if(i != 999) {
-			
-				
-			}
-		}*/
 		
 		//플레이어와 npc상호작용 
 		public void interactNPC(int i) {
+			
 			if(i != 999) {
-				System.out.println(" npc coliision ");
+				
+				if(gp.keyH.enterPressed == true) {
+					gp.gameState = gp.dialogueState;
+					gp.npc[i].speak();
+				}
 			}
+			gp.keyH.enterPressed = false;
 		}
 		
 		public void draw(Graphics2D g2){

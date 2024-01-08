@@ -13,8 +13,17 @@ public class NPC_OldMan extends Entity {
 		speed = 1;
 		
 		getImage();
+		setDialogue();
 	
+	}
 	
+	public void setDialogue() {
+		
+		dialogues[0] = "반갑군 소년";
+		dialogues[1] = "이 섬에 보물을 찾으러 온거냐?";
+		dialogues[2] = "난 강한 마법사였지만... \n이제 모험하기엔 늙었군";
+		dialogues[3] = "행운을 빈다";
+		
 	}
 	
 	public void getImage() {
@@ -29,6 +38,7 @@ public class NPC_OldMan extends Entity {
 		right2 = setup("/npc/oldman_right_2");
 	
 		}
+	
 
 	/* npc의 행동설정*/
 	@Override
@@ -56,4 +66,5 @@ public class NPC_OldMan extends Entity {
 		}
 		
 	}
+	
 }

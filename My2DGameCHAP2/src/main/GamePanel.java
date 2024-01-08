@@ -41,7 +41,7 @@ public class GamePanel extends JPanel implements Runnable{
 	/*SYSTEM*/
 	//게임을 종료하기 전에 지속할 수 있게함
 	TileManager tileM = new TileManager(this);
-	KeyHandler keyH = new KeyHandler(this);
+	public KeyHandler keyH = new KeyHandler(this);
 	public CollisionChecker cChecker = new CollisionChecker(this);
 	public AssetSetter aSetter = new AssetSetter(this);
 	Sound music = new Sound(); // 배경음 
@@ -60,6 +60,7 @@ public class GamePanel extends JPanel implements Runnable{
 	public int gameState;
 	public final int playState = 1; 	// "게임플레이 상태" 상태값 상수로 표현
 	public final int pauseState = 2;	// "일시정지 상태" 상태값을 상수로 표현
+	public final int dialogueState = 3; //"대화상태"
 
 	public GamePanel() {
 		
